@@ -1,4 +1,4 @@
-from apps import app
+from depricated.apps import app
 from os import cpu_count
 
 

@@ -12,6 +12,5 @@ USER_URL = path.join(BASE_URL, 'users')
 class UserOverView(HTTPMethodView):
     @staticmethod
     def get(self, user_name):
-
         user_data = fetch_data(path.join(USER_URL, user_name)).json()
         return json(user_data)
