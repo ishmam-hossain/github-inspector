@@ -8,7 +8,7 @@ from threading import Thread
 import concurrent.futures
 
 
-class UserInfo:
+class GitInspect:
     __slots__ = ('BASE_URL', 'response_data', 'user_name')
 
     def __init__(self, user_name):

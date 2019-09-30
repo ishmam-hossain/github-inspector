@@ -1,6 +1,5 @@
-from inspector.main_class import UserInfo
+from inspector.main_class import GitInspect
 
 
-inspct = UserInfo("kennethreitz")
-# inspct = UserInfo("ishmam-hossain")
+inspect = GitInspect("miguelgrinberg")
 
