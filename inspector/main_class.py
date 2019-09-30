@@ -2,7 +2,7 @@ from .utils import (fetch_data,
                     represent_repo_data,
                     filter_data,
                     filter_and_print_basic_info,
-                    print_repo_data
+                    filter_and_print_repo_info
                     )
 from threading import Thread
 import concurrent.futures
@@ -38,4 +38,4 @@ class GitInspect:
 
     def print_in_terminal(self):
         filter_and_print_basic_info(self.basic_info)
-        print_repo_data(self.repo_info)
+        filter_and_print_repo_info(self.repo_info)

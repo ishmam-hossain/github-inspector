@@ -118,11 +118,11 @@ def filter_and_print_basic_info(_data):
     print_dict(printable_dict, max_size)
 
 
-def print_repo_data(_data):
+def filter_and_print_repo_info(_data):
     print(colored(f"Total Stars: {_data['total_stars']} ✯ ", "red", attrs=["bold", "dark", "underline"]))
     print_divider(1)
 
-    max_size = len('description')
+    max_size = len(max(_data.keys(), key=len))
 
     for repo in _data['repo_data']:
         print_dict(repo, max_size)
