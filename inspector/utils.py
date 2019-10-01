@@ -1,7 +1,10 @@
+import operator
+
 import requests
 import shutil
 from termcolor import colored
 from os import path
+from collections import Counter
 
 
 def get_all_urls(json_data):
@@ -37,9 +40,14 @@ def filter_repo_data(repos):
 def represent_repo_data(repo_data):
     repo_data = filter_repo_data(repo_data)
     total_stars = sum([_data["stars"] for _data in repo_data])
+    used_languages = dict(Counter([_data["language"] for _data in repo_data]))
+    most_used_language_count = max(used_languages.values())
+    most_used_language = {max(used_languages.items(), key=operator.itemgetter(1))[0]: most_used_language_count}
 
     representational_data = {
         "total_stars": total_stars,
+        "used_languages": used_languages,
+        "most_used_language": most_used_language,
         "repo_data": repo_data
     }
     return representational_data
@@ -118,8 +126,24 @@ def filter_and_print_basic_info(_data):
     print_dict(printable_dict, max_size)
 
 
+def get_printable_string_from_dict(_data):
+    return ", ".join([f"{key} ({_data[key]})" for key in _data])
+
+
 def filter_and_print_repo_info(_data):
-    print(colored(f"Total Stars: {_data['total_stars']} ✯ ", "red", attrs=["bold", "dark", "underline"]))
+    max_size = len(max(_data.keys(), key=len))
+    for key in sorted(_data):
+        if key != "repo_data":
+            print(
+                colored(
+                    f"{key.replace('_', ' ').capitalize()}{' ' * (max_size - len(key))}:   "
+                    f"{_data[key] if not isinstance(_data[key], dict) else f'{get_printable_string_from_dict(_data[key])}'}"
+                    f" {'✯' if key == 'total_stars' else ''} ",
+                    "red", attrs=["bold", "dark", "underline"]
+                ),
+                end="     ")
+            print()
+
     print_divider(1)
 
     max_size = len(max(_data.keys(), key=len))
