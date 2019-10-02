@@ -1,6 +1,5 @@
 from .utils import (fetch_data,
                     represent_repo_data,
-                    filter_data,
                     filter_and_print_basic_info,
                     filter_and_print_repo_info
                     )
@@ -32,5 +31,8 @@ class GitInspect:
         return basic_data
 
     def print_in_terminal(self):
-        filter_and_print_basic_info(self.basic_info)
-        filter_and_print_repo_info(self.repo_info)
+        try:
+            filter_and_print_basic_info(self.basic_info)
+            filter_and_print_repo_info(self.repo_info)
+        except (KeyError, TypeError):
+            print("Sorry something went wrong!\nPlease check the user-name & try again..!\n")
