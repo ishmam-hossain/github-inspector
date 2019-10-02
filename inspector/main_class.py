@@ -4,8 +4,6 @@ from .utils import (fetch_data,
                     filter_and_print_basic_info,
                     filter_and_print_repo_info
                     )
-from threading import Thread
-import concurrent.futures
 
 
 class GitInspect:
@@ -31,10 +29,7 @@ class GitInspect:
         basic_data = fetch_data(base_url=self.BASE_URL,
                                 user_name=self.user_name)
 
-        #   TODO: change response data
-        self.response_data.update(**filter_data(basic_data))
-
-        return self.response_data
+        return basic_data
 
     def print_in_terminal(self):
         filter_and_print_basic_info(self.basic_info)
