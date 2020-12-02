@@ -11,7 +11,7 @@ Right now it's not done yet. If you want to use it-
 from inspector.main_class import GitInspect
 
 
-inspect = GitInspect("kennethreit")
+inspect = GitInspect("kennethreitz")
 ```
 go to the [run.py](https://github.com/ishmam-hossain/github-inspector/blob/master/run.py)
 file & initiate the 
